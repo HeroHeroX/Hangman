@@ -3,7 +3,7 @@ import random
 print("Welcome to hangman")
 print("-----------------------------------")
 
-wordDict = ["gold","apocalyst","dragon","monster","beast","hunter","warrior","archer","bishop"]
+wordDict = ["gold","warrior","hi"]
 
 ##Choose random word
 randomWord = random.choice(wordDict)
@@ -57,15 +57,15 @@ def print_hangman(wrong):
 
 def printWord(guessedLetters):
     counter = 0
-    rightLetter = 0
+    rightLetters = 0
     for char in randomWord:
         if char in guessedLetters:
-            print(randomWord[counter],end=" ")
-            rightLetter += 1
+            print(randomWord[counter], end=" ")
+            rightLetters += 1
         else:
             print(" ",end=" ")
         counter += 1
-    return rightLetter
+    return rightLetters
 
 def print_Lines():
     print("\r")
@@ -78,7 +78,7 @@ current_guessed_index = 0
 current_letters_guessed = []
 current_letters_right = 0
 
-while(times_of_wrong != 6 and current_guessed_index != lenght_of_Word_to_guess):
+while(times_of_wrong != 6 and current_letters_right != lenght_of_Word_to_guess):
     print("\nLeeters guessed so far: ")
     for letter in current_letters_guessed:
         print(letter, end=" ")
@@ -88,6 +88,7 @@ while(times_of_wrong != 6 and current_guessed_index != lenght_of_Word_to_guess):
         print_hangman(times_of_wrong)
         current_guessed_index += 1
         current_letters_guessed.append(letterGuessed)
+        current_letters_right = printWord(current_letters_guessed)
         print_Lines()
     
     else:
